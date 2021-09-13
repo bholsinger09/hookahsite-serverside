@@ -61,4 +61,4 @@ db.query("INSERT INTO Customer_Questions (CustName, CustEmail, CustQuestion) VAL
  
 
 
-app.listen(8000, ()=> console.log(' Listening on port 8000'));
+app.listen(process.env.Port || 8000, ()=> console.log(' Listening on port 8000'));
