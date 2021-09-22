@@ -28,13 +28,15 @@ db.connect((err) => {
     console.log('MySQL Connection Established.');
   });
   
-
+/* not used get request
 app.get('/', (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.send('Hello back');
 }
 
 );
+*/
+
 
 app.post('/' , (req,res) => {
     const {email, name, question} = req.body;
