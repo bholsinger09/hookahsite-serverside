@@ -5,7 +5,13 @@ const cors = require('cors');
 //this was the old way and did not support secure password 
 mysql = require('mysql2');
 
+// below is the heroku server url 
+// mysql://b30364b552e522:377dacbf@us-cdbr-east-04.cleardb.com/heroku_797492669a9c426?reconnect=true
+
 const app = express();
+
+/*
+local connection 
 
 const db =  mysql.createConnection({
     connectionaLimit: 50,
@@ -15,6 +21,19 @@ const db =  mysql.createConnection({
     database:'sys',
     port: 3306
 });
+
+*/
+
+
+const db =  mysql.createConnection({
+    connectionaLimit: 50,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DATABASE,
+    port: 3306
+});
+
 
 app.use(cors());
 
