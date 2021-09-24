@@ -68,7 +68,7 @@ app.post('/' , (req,res) => {
 
 //MYSQL updating table
 
-db.query("INSERT INTO Customer_Questions (CustName, CustEmail, CustQuestion) VALUES (?,?,?)",
+db.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?)",
     [name, email, question], (err,result)=> {
         if (err) {
             console.log(err)
