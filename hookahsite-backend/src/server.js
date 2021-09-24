@@ -7,8 +7,10 @@ mysql = require('mysql2');
 
 // below is the heroku server url 
 // mysql://b30364b552e522:377dacbf@us-cdbr-east-04.cleardb.com/heroku_797492669a9c426?reconnect=true
-
+//         username       password    hostname                 database 
 const app = express();
+
+const port = process.env.Port || 8000
 
 /*
 local connection 
@@ -82,4 +84,5 @@ db.query("INSERT INTO Customer_Questions (CustName, CustEmail, CustQuestion) VAL
  
 
 
-app.listen(process.env.Port || 8000, ()=> console.log(' Listening on port 8000'));
+app.listen(port);
+console.log(`server is listing on ${port}`);
