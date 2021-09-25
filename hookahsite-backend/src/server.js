@@ -45,7 +45,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //SQL connection test
-pool.connect((err) => {
+pool.getConnection((err) => {
     if (err) console.error(err);
     console.log('MySQL Connection Established.');
   });
