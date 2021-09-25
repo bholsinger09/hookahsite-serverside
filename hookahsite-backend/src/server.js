@@ -27,8 +27,9 @@ const db =  mysql.createConnection({
 */
 
 
-const db =  mysql.createConnection({
-    connectionaLimit: 50,
+const pool =  mysql.createPool({
+    connectionaLimit: 120,
+    waitForConnections: true,
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     password: process.env.DB_PASSWORD,
@@ -44,7 +45,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //SQL connection test
-db.connect((err) => {
+pool.connect((err) => {
     if (err) console.error(err);
     console.log('MySQL Connection Established.');
   });
@@ -68,14 +69,14 @@ app.post('/' , (req,res) => {
 
 //MYSQL updating table
 
-db.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?)",
+pool.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?)",
     [name, email, question], (err,result)=> {
         if (err) {
             console.log(err)
         }else {
             res.send('data sent')
         }
-        db.end();
+        
     }
     );
 
