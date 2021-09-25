@@ -10,7 +10,7 @@ mysql = require('mysql2');
 //         username       password    hostname                 database 
 const app = express();
 
-const port = process.env.Port || 8000
+const port = process.env.PORT || 8000
 
 /*
 local connection 
