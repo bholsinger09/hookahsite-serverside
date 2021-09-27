@@ -70,7 +70,7 @@ app.post('/' , (req,res) => {
 //MYSQL updating table
 
 pool.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?)",
-    [name, email, question], (err,result)=> {
+    [name, email, question], (err,res)=> {
         if (err) {
             console.log(err)
         }else {
