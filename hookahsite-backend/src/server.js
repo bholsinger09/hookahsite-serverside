@@ -4,7 +4,7 @@ const cors = require('cors');
 //const mysql = require("mysql");
 //this was the old way and did not support secure password 
 const mysql = require('mysql2');
-const timeout = require('connect-timeout')
+const timeout = require('connect-timeout');
 
 
 // below is the heroku server url 
