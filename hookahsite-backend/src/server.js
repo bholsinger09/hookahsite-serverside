@@ -3,7 +3,9 @@ const express = require('express');
 const cors = require('cors');
 //const mysql = require("mysql");
 //this was the old way and did not support secure password 
-mysql = require('mysql2');
+const mysql = require('mysql2');
+const timeout = require('connect-timeout')
+
 
 // below is the heroku server url 
 // mysql://b30364b552e522:377dacbf@us-cdbr-east-04.cleardb.com/heroku_797492669a9c426?reconnect=true
@@ -60,7 +62,7 @@ app.get('/', (req,res) => {
 */
 
 
-app.post('/' , (req,res) => {
+app.post('/' ,timeout('7s'), (req,res) => {
     const {email, name, question} = req.body;
     res.header("Access-Control-Allow-Origin", "*");
     console.log(`Your Email is ${email} and your name is ${name} and your ${question}`);
