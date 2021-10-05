@@ -63,7 +63,7 @@ app.get('/', (req,res) => {
 
 
 app.post('/' ,timeout('6s'), async (req,res) => {
-    const {email, name, question} = req.body;
+    const {email, name, question} = await req.body;
     res.header("Access-Control-Allow-Origin", "*");
     console.log(`Your Email is ${email} and your name is ${name} and your ${question}`);
 
