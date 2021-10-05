@@ -74,7 +74,7 @@ pool.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?
         if (err) {
             console.log(err)
         }else {
-            res.send('data sent')
+            console.log('data sent')
         }
         
     }
