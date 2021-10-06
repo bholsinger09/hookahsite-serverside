@@ -1,34 +1,16 @@
 
 const express = require('express');
 const cors = require('cors');
-//const mysql = require("mysql");
-//this was the old way and did not support secure password 
 const mysql = require('mysql2');
 const timeout = require('connect-timeout');
-
-
-// below is the heroku server url 
-// mysql://b30364b552e522:377dacbf@us-cdbr-east-04.cleardb.com/heroku_797492669a9c426?reconnect=true
-//         username       password    hostname                 database 
 const app = express();
 
+//port
 const port = process.env.PORT || 8000
 
-/*
-local connection 
-
-const db =  mysql.createConnection({
-    connectionaLimit: 50,
-    user:'root',
-    host: 'localhost',
-    password:'Myspam#09',
-    database:'sys',
-    port: 3306
-});
-
-*/
 
 
+//connection pool 
 const pool =  mysql.createPool({
     connectionaLimit: 60000,
     waitForConnections: true,
@@ -41,8 +23,6 @@ const pool =  mysql.createPool({
 
 
 app.use(cors());
-
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
@@ -57,7 +37,6 @@ app.get('/', (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.send('Hello back');
 }
-
 );
 */
 
@@ -79,15 +58,15 @@ pool.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?
                 res.send({ message: 'error', data: err.message});
             } else{
                 res.send ({ message: 'error', data: 'generic error'})
-                // you can also specify a status for the response like this
+                // specify a status for the response 
                 /**
-                 * res.status(500).send({ // your object })
+                 * res.status(500).send({ // object })
                  */
             }
 
         }else {
            
-            console.log('data sent') // this just prints data sent on the server console.
+            console.log('data sent') //testing data sent in console
             res.send({ message: 'success', data: response}) 
         }
 
