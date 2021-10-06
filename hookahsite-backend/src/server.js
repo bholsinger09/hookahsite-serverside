@@ -92,9 +92,10 @@ pool.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?
         }
 
     }
-
-
 );
+
+
+});
  
 
 
