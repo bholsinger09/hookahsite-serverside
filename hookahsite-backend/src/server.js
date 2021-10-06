@@ -72,18 +72,29 @@ app.post('/' ,timeout('6s'), async (req,res) => {
 //MYSQL updating table
 
 pool.query("INSERT INTO customer_questions (name, email, question) VALUES (?,?,?)",
-    [name, email, question], (err,res)=> {
+    [name, email, question], (err,response)=> {
         if (err) {
-            console.log(err)
+            console.log(err); 
+            if (err.message) {
+                res.send({ message: 'error', data: err.message});
+            } else{
+                res.send ({ message: 'error', data: 'generic error'})
+                // you can also specify a status for the response like this
+                /**
+                 * res.status(500).send({ // your object })
+                 */
+            }
+
         }else {
-            console.log('data sent')
+           
+            console.log('data sent') // this just prints data sent on the server console.
+            res.send({ message: 'success', data: response}) 
         }
-        
+
     }
-    );
 
 
-});
+);
  
 
 
